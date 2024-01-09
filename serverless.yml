@@ -10,7 +10,7 @@ package:
 
 provider:
   deploymentBucket:
-    name: dosmatcher.serverless
+    name: dosmatcher2
     maxPreviousDeploymentArtifacts: 10
     blockPublicAccess: true
   name: aws
