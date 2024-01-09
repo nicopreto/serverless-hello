@@ -1,2 +1,1 @@
-{"C:\\Users\\npretorius\\projects\\dos\\hello\\index.js": {"path":"C:\\Users\\npretorius\\projects\\dos\\hello\\index.js","statementMap":{"0":{"start":{"line":1,"column":0},"end":{"line":15,"column":2}},"1":{"start":{"line":3,"column":19},"end":{"line":3,"column":24}},"2":{"start":{"line":5,"column":2},"end":{"line":14,"column":4}}},"fnMap":{"0":{"name":"(anonymous_0)","decl":{"start":{"line":1,"column":25},"end":{"line":1,"column":26}},"loc":{"start":{"line":1,"column":42},"end":{"line":15,"column":1}},"line":1}},"branchMap":{},"s":{"0":1,"1":2,"2":2},"f":{"0":2},"b":{},"_coverageSchema":"1a1c01bbd47fc00a2c39e90264f33305004495a9","hash":"405b449d754e5e7b678a3581fb96494ecb82f982"}
-}
+{}
