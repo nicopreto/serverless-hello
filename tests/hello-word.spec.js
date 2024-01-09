@@ -7,6 +7,6 @@ describe('HelloWorld', () => {
     });
 
     it('should return the correct message', () => {
-        return helloWorld.handler({ name: 'nico'}).then(data => expect(JSON.parse(data.body).message).toBe('hello nico'));
+        return helloWorld.handler({ name: 'nico'}).then(data => expect(JSON.parse(data.body).message).toBe('hello nico!'));
     });
 });
