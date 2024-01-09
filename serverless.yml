@@ -1,4 +1,6 @@
-service: serverless-hello
+org: nicopret
+app: dos-matcher
+service: hello
 frameworkVersion: '3'
 
 package:
