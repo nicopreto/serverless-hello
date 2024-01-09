@@ -1,0 +1,15 @@
+service: serverless-hello
+frameworkVersion: '3'
+
+package:
+  patterns:
+  - '!coverage/**'
+  - '!.circleci/**'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+functions:
+  test:
+    handler: index.handler
