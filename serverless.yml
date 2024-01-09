@@ -7,6 +7,10 @@ package:
   - '!.circleci/**'
 
 provider:
+  deploymentBucket:
+    name: dosmatcher.serverless
+    maxPreviousDeploymentArtifacts: 10
+    blockPublicAccess: true
   name: aws
   runtime: nodejs18.x
 
