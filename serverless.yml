@@ -8,6 +8,13 @@ package:
   - '!coverage/**'
   - '!.circleci/**'
 
+plugins:
+  - serverless-import-apigateway
+
+custom:
+  importApiGateway:
+    name: podproduce
+
 provider:
   deploymentBucket:
     name: dosmatcher2
@@ -20,3 +27,27 @@ provider:
 functions:
   test:
     handler: index.handler
+    events:
+      - http:
+          path: hello/{name}
+          method: get
+          integration: lambda
+          request:
+            template:
+              application/json: '{ "name" : "$input.params(''name'')" }'
+
+resources:
+  Resources:
+    usersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: dosMatcherTable
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: N
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1

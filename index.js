@@ -1,5 +1,7 @@
 module.exports.handler = async (event) => {
 
+  console.log(event);
+
   const { name } = event;
 
   return {
