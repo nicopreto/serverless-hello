@@ -27,9 +27,9 @@ jobs:
       - run:
           name: Run tests with coverage
           command: npm run test
-      # - run:
-      #     name: Deploy application
-      #     command: sls deploy
+      - run:
+          name: Deploy application
+          command: sls deploy
   say-hello:
     # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/configuration-reference/#executor-job
