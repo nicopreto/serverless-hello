@@ -13,7 +13,7 @@ jobs:
     executor: serverless-framework/default
     steps:
       - checkout
-      - aws-cli/setup
+      - aws-cli/setup:
           profile_name: default
       - aws-cli/role_arn_setup:
             profile_name: circle_ci_role
