@@ -3,7 +3,7 @@
 version: 2.1
 
 orbs:
-  aws-cli: circleci/aws-cli@3.1.5
+  aws-cli: circleci/aws-cli@4.1.2
   serverless-framework: circleci/serverless-framework@2.0
 
 # Define a job to be invoked later in a workflow.
@@ -14,6 +14,11 @@ jobs:
     steps:
       - checkout
       - aws-cli/setup
+          profile_name: default
+      - aws-cli/role_arn_setup:
+            profile_name: circle_ci_role
+            role_arn: arn:aws:iam::113423560284:role/circle_ci_role
+            source_profile: default
       - serverless-framework/setup
       - run:
           name: Install Packages
