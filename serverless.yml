@@ -1,5 +1,3 @@
-org: nicopret
-app: dos-matcher
 service: hello
 frameworkVersion: '3'
 
