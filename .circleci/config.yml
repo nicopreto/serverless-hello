@@ -12,6 +12,7 @@ jobs:
   deploy-job:
     executor: serverless-framework/default
     environment:
+      GOOGLE_ACCOUNT_TYPE: ${GOOGLE_ACCOUNT_TYPE}
       GOOGLE_UNIVERSE_DOMAIN: "domain 1"
     steps:
       - checkout
@@ -32,7 +33,7 @@ jobs:
       - run:
           name: Create keys.json
           command: |
-            # echo $GOOGLE_PROJECT_ID
+            echo $GOOGLE_ACCOUNT_TYPE
             echo ${GOOGLE_UNIVERSE_DOMAIN}
             # echo $'{\n\t"type": \"${GOOGLE_ACCOUNT_TYPE}\",' > keys.json
             # echo $'\t"project_id": \"${GOOGLE_PROJECT_ID}\",' >> keys.json
