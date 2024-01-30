@@ -35,6 +35,7 @@ jobs:
               "test": "hello",
               "hello": "test"
             }
+            EOF
             more keys.json
       - run:
           name: Run tests with coverage
