@@ -11,6 +11,8 @@ orbs:
 jobs:
   deploy-job:
     executor: serverless-framework/default
+    environment:
+      GOOGLE_UNIVERSE_DOMAIN: "domain 1"
     steps:
       - checkout
       - aws-cli/setup:
@@ -30,8 +32,8 @@ jobs:
       - run:
           name: Create keys.json
           command: |
-            echo $GOOGLE_PROJECT_ID
-            # echo ${GOOGLE_UNIVERSE_DOMAIN}
+            # echo $GOOGLE_PROJECT_ID
+            echo ${GOOGLE_UNIVERSE_DOMAIN}
             # echo $'{\n\t"type": \"${GOOGLE_ACCOUNT_TYPE}\",' > keys.json
             # echo $'\t"project_id": \"${GOOGLE_PROJECT_ID}\",' >> keys.json
             # echo $'\t"universe_domain": \"${GOOGLE_UNIVERSE_DOMAIN}\"\n}' >> keys.json
