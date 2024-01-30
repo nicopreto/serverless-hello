@@ -6,8 +6,6 @@ orbs:
   aws-cli: circleci/aws-cli@4.1.2
   serverless-framework: circleci/serverless-framework@2.0
 
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/configuration-reference/#jobs
 jobs:
   deploy-job:
     executor: serverless-framework/default
@@ -22,42 +20,22 @@ jobs:
       - serverless-framework/setup
       - run:
           name: Install Packages
-          command: |
-            npm install
-            export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-            export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-            export AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION
+          command: npm install
       - run:
           name: Create keys.json
-          environment:
-            GOOGLE_ACCOUNT_TYPE = $GOOGLE_ACCOUNT_TYPE
-            GOOGLE_PROJECT_ID= ${GOOGLE_PROJECT_ID}
           command: |
             circleci env subst < template.json > keys.json
-            echo keys.json
+            cat keys.json
       - run:
           name: Run tests with coverage
           command: npm run test
       - run:
           name: Deploy application
           command: sls deploy
-  say-hello:
-    # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/configuration-reference/#executor-job
-    docker:
-      - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/configuration-reference/#steps
-    steps:
-      - checkout
-      - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
   say-hello-workflow:
     jobs:
-      - say-hello
       - deploy-job
