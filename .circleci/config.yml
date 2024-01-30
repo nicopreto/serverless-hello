@@ -30,6 +30,8 @@ jobs:
       - run:
           name: Create keys.json
           command: |
+            echo $GOOGLE_ACCOUNT_TYPE
+            echo ${GOOGLE_ACCOUNT_TYPE}
             echo $'{\n\t"type": \"${GOOGLE_ACCOUNT_TYPE}\",' > keys.json
             echo $'\t"project_id": \"${GOOGLE_PROJECT_ID}\",' >> keys.json
             echo $'\t"universe_domain": \"${GOOGLE_UNIVERSE_DOMAIN}\"\n}' >> keys.json
