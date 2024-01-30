@@ -29,9 +29,13 @@ jobs:
             export AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION
       - run:
           name: Create keys.json
+          environment:
+            GOOGLE_ACCOUNT_TYPE = $GOOGLE_ACCOUNT_TYPE
+            GOOGLE_PROJECT_ID= ${GOOGLE_PROJECT_ID}
+            TEST="test"
           command: |
             circleci env subst < template.json > keys.json
-            cat keys.json
+            echo keys.json
       - run:
           name: Run tests with coverage
           command: npm run test
