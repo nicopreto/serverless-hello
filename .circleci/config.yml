@@ -30,15 +30,15 @@ jobs:
       - run:
           name: Create keys.json
           command: |
-            echo $GOOGLE_UNIVERSE_DOMAIN
-            echo ${GOOGLE_UNIVERSE_DOMAIN}
-            echo $'{\n\t"type": \"${GOOGLE_ACCOUNT_TYPE}\",' > keys.json
-            echo $'\t"project_id": \"${GOOGLE_PROJECT_ID}\",' >> keys.json
-            echo $'\t"universe_domain": \"${GOOGLE_UNIVERSE_DOMAIN}\"\n}' >> keys.json
-            more keys.json
-          environment:
-            GOOGLE_ACCOUNT_TYPE: ${GOOGLE_ACCOUNT_TYPE}
-            GOOGLE_UNIVERSE_DOMAIN: "domain 1"
+            echo $GOOGLE_PROJECT_ID
+            # echo ${GOOGLE_UNIVERSE_DOMAIN}
+            # echo $'{\n\t"type": \"${GOOGLE_ACCOUNT_TYPE}\",' > keys.json
+            # echo $'\t"project_id": \"${GOOGLE_PROJECT_ID}\",' >> keys.json
+            # echo $'\t"universe_domain": \"${GOOGLE_UNIVERSE_DOMAIN}\"\n}' >> keys.json
+            # more keys.json
+          # environment:
+          #   GOOGLE_ACCOUNT_TYPE: ${GOOGLE_ACCOUNT_TYPE}
+          #   GOOGLE_UNIVERSE_DOMAIN: "domain 1"
       - run:
           name: Run tests with coverage
           command: npm run test
