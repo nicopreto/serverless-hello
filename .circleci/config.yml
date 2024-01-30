@@ -30,12 +30,8 @@ jobs:
       - run:
           name: Create keys.json
           command: |
-            cat <<EOF > keys.json
-            {
-              "test": "hello",
-              "hello": "test"
-            }
-            EOF
+            echo $'{\n\t"type": "service",' > keys.json
+            echo $'\t"universe_domain": "googleapis.com"\n}' >> keys.json
             more keys.json
       - run:
           name: Run tests with coverage
