@@ -1,8 +1,13 @@
 service: hello
 frameworkVersion: '3'
 
+plugins:
+  - serverless-import-apigateway
+
 custom:
   bucketName: dosmatcher2
+  importApiGateway:
+    name: dosmatcher
 
 package:
   patterns:
@@ -21,3 +26,8 @@ provider:
 functions:
   test:
     handler: index.handler
+    events:
+      - http:
+          path: hello
+          method: get
+          integration: lambda
