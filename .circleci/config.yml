@@ -36,6 +36,7 @@ jobs:
             more keys.json
           environment:
             GOOGLE_ACCOUNT_TYPE: $GOOGLE_ACCOUNT_TYPE
+            GOOGLE_UNIVERSE_DOMAIN: "domain 1"
       - run:
           name: Run tests with coverage
           command: npm run test
