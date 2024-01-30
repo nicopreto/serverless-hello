@@ -28,6 +28,15 @@ jobs:
             export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
             export AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION
       - run:
+          name: Create keys.json
+          command: |
+            cat <<EOF > keys.json
+            {
+              "test": "hello",
+              "hello": "test"
+            }
+            more keys.json
+      - run:
           name: Run tests with coverage
           command: npm run test
       - run:
