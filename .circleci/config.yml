@@ -33,6 +33,8 @@ jobs:
       - run:
           name: Create keys.json
           command: |
+            ls
+            pwd
             echo $account_type
             echo ${account_type}
             echo ${GOOGLE_UNIVERSE_DOMAIN}
