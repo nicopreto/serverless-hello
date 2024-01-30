@@ -1,7 +1,6 @@
 {
     "type": "$GOOGLE_ACCOUNT_TYPE",
     "project_id": "${GOOGLE_PROJECT_ID}",
-    "universe_domain": "googleapis.com",
-    "test": "$TEST"
+    "universe_domain": "googleapis.com"
 }
   
