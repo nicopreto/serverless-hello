@@ -1,12 +1,19 @@
 service: hello
 frameworkVersion: '3'
 
+custom:
+  bucketName: dosmatcher2
+
 package:
   patterns:
   - '!coverage/**'
   - '!.circleci/**'
 
 provider:
+  deploymentBucket:
+    name: ${self:custom.bucketName}
+    maxPreviousDeploymentArtifacts: 10
+    blockPublicAccess: true
   name: aws
   region: eu-west-2
   runtime: nodejs18.x
