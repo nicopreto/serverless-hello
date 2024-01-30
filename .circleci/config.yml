@@ -34,6 +34,8 @@ jobs:
             echo $'\t"project_id": "$GOOGLE_PROJECT_ID",' >> keys.json
             echo $'\t"universe_domain": "$GOOGLE_UNIVERSE_DOMAIN"\n}' >> keys.json
             more keys.json
+          environment:
+            GOOGLE_ACCOUNT_TYPE: $GOOGLE_ACCOUNT_TYPE
       - run:
           name: Run tests with coverage
           command: npm run test
