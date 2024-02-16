@@ -1,5 +1,13 @@
-service: serverless-hello
+service: hello
 frameworkVersion: '3'
+
+plugins:
+  - serverless-import-apigateway
+
+custom:
+  bucketName: dosmatcher2
+  importApiGateway:
+    name: dosmatcher
 
 package:
   patterns:
@@ -7,9 +15,19 @@ package:
   - '!.circleci/**'
 
 provider:
+  deploymentBucket:
+    name: ${self:custom.bucketName}
+    maxPreviousDeploymentArtifacts: 10
+    blockPublicAccess: true
   name: aws
+  region: eu-west-2
   runtime: nodejs18.x
 
 functions:
   test:
     handler: index.handler
+    events:
+      - http:
+          path: hello
+          method: get
+          integration: lambda

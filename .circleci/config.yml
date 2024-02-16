@@ -3,38 +3,39 @@
 version: 2.1
 
 orbs:
-  aws-cli: circleci/aws-cli@3.1.5
+  aws-cli: circleci/aws-cli@4.1.2
   serverless-framework: circleci/serverless-framework@2.0
 
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/configuration-reference/#jobs
 jobs:
   deploy-job:
     executor: serverless-framework/default
     steps:
       - checkout
-      - aws-cli/setup
+      - aws-cli/setup:
+          profile_name: default
+      - aws-cli/role_arn_setup:
+            profile_name: circle_ci_role
+            role_arn: arn:aws:iam::113423560284:role/circle_ci_role
+            source_profile: default
       - serverless-framework/setup
       - run:
-          command: serverless deploy -v
-          name: deploy
-  say-hello:
-    # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/configuration-reference/#executor-job
-    docker:
-      - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/configuration-reference/#steps
-    steps:
-      - checkout
+          name: Install Packages
+          command: npm install
       - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+          name: Create keys.json
+          command: |
+            circleci env subst < template.json > keys.json
+            cat keys.json
+      - run:
+          name: Run tests with coverage
+          command: npm run test
+      - run:
+          name: Deploy application
+          command: sls deploy
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
   say-hello-workflow:
     jobs:
-      - say-hello
       - deploy-job
