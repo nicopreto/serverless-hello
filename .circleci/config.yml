@@ -37,4 +37,8 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
-      - deploy-job
+      - deploy-job:
+          filters:
+            branches:
+              only:
+                - main
